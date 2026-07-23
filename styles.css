@@ -313,32 +313,61 @@ a:hover { color: var(--accent-hover); text-decoration: underline; }
   margin: 0;
   padding: 0;
   display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 14px;
-  max-width: 460px;
+  max-width: 640px;
 }
 
-.contacts li {
+.contacts li { display: flex; }
+
+.contact-btn {
+  flex: 1;
   display: flex;
-  align-items: baseline;
-  gap: 16px;
-  padding: 14px 18px;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
   background: var(--card-bg);
   border: 1px solid var(--border);
-  border-radius: 10px;
-  transition: border-color .15s ease;
-}
-.contacts li:hover { border-color: var(--accent); }
-
-.contact-label {
-  flex: 0 0 88px;
-  font-size: 13.5px;
+  border-radius: 12px;
+  color: var(--fg);
+  font-size: 16px;
   font-weight: 600;
-  letter-spacing: .04em;
-  text-transform: uppercase;
-  color: var(--fg-muted);
+  box-shadow: var(--shadow);
+  transition: border-color .16s ease, transform .16s ease, box-shadow .16s ease;
+}
+.contact-btn:hover {
+  text-decoration: none;
+  border-color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(20, 25, 35, .1);
 }
 
-.contacts a { font-size: 17px; font-weight: 550; }
+.contact-ico {
+  flex: none;
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 11px;
+  color: #fff;
+}
+
+/* фирменные цвета плиток мессенджеров и контактов */
+.c-tg   .contact-ico { background: #2aa3e0; }
+.c-max  .contact-ico { background: linear-gradient(135deg, #2b8cff, #7b57ff); }
+.c-mail .contact-ico { background: var(--accent); }
+.c-tel  .contact-ico { background: #2f9e5b; }
+
+.contact-text { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+.contact-arrow {
+  flex: none;
+  color: var(--fg-faint);
+  transform: translateX(-2px);
+  transition: transform .16s ease, color .16s ease;
+}
+.contact-btn:hover .contact-arrow { color: var(--accent); transform: translateX(2px); }
 
 /* ---------- Подвал ---------- */
 
@@ -402,13 +431,15 @@ a:hover { color: var(--accent-hover); text-decoration: underline; }
   .cta { flex-direction: column; align-items: stretch; }
   .btn { text-align: center; }
   .chips li { white-space: normal; }
-  .contacts li { flex-direction: column; gap: 2px; }
-  .contact-label { flex: none; }
+  .contacts { grid-template-columns: 1fr; }
+  .to-top { right: 16px; bottom: 16px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   * { transition: none !important; }
-  .btn:hover, .card:hover, .chips li:hover { transform: none; }
+  .btn:hover, .card:hover, .chips li:hover,
+  .contact-btn:hover { transform: none; }
   .chips li:hover::before { transform: none; }
+  .contact-btn:hover .contact-arrow { transform: none; }
 }
