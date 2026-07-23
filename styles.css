@@ -361,6 +361,37 @@ a:hover { color: var(--accent-hover); text-decoration: underline; }
   color: var(--fg-faint) !important;
 }
 
+/* ---------- Кнопка «наверх» ---------- */
+
+.to-top {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 50;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  box-shadow: 0 4px 16px rgba(20, 25, 35, .22);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(14px);
+  transition: opacity .2s ease, transform .2s ease,
+              visibility .2s ease, background-color .15s ease;
+}
+
+.to-top:hover { background: var(--accent-hover); color: #fff; text-decoration: none; }
+
+.to-top.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
 /* ---------- Мобильные ---------- */
 
 @media (max-width: 600px) {
